@@ -12,7 +12,6 @@ namespace MMT.Domain.Model
         public string Email { get; set; }
         public bool WebSite { get; set; }
         public DateTime LastLoggedIn { get; set; }       
-        public string PreferredLanuage { get; set; }
-        //public  Order Order  { get; set; };
+        public string PreferredLanuage { get; set; }        
     }
 }
