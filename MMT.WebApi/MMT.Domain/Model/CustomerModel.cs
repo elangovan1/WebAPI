@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MMT.Domain.Model
 {
     public class CustomerModel : AddressModel
     {
-        [Key]        
+        [Key]
+        [Column("CustomerId")]
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

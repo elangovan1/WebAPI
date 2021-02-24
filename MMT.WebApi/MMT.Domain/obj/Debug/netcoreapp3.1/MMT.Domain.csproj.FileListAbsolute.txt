@@ -1,0 +1,8 @@
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\bin\Debug\netcoreapp3.1\MMT.Domain.deps.json
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\bin\Debug\netcoreapp3.1\MMT.Domain.dll
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\bin\Debug\netcoreapp3.1\MMT.Domain.pdb
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\obj\Debug\netcoreapp3.1\MMT.Domain.AssemblyInfoInputs.cache
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\obj\Debug\netcoreapp3.1\MMT.Domain.AssemblyInfo.cs
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\obj\Debug\netcoreapp3.1\MMT.Domain.csproj.CoreCompileInputs.cache
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\obj\Debug\netcoreapp3.1\MMT.Domain.dll
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.Domain\obj\Debug\netcoreapp3.1\MMT.Domain.pdb

@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MMT.Domain.Entity;
 using MMT.Domain.Interfaces;
 using MMT.Utility;
 using System;
-using System.Threading.Tasks;
 
 namespace MMT.WebApi.Controllers
 {
 
-    [Route("api/GetUserDetails")]
+    [Route("api/{actionname}")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerEntityHandler _customerHandler;
@@ -19,17 +17,20 @@ namespace MMT.WebApi.Controllers
             _customerHandler = customerHandler;
         }
 
-        [HttpPost]        
-        public async Task<ActionResult<CustomerOrder>> GetOrderDetails(Customer customer)
+        [HttpGet]
+        public ActionResult<CustomerOrder> GetUserDetails(string email)
         {
             try
             {
-                Ensure.IsNotNull(customer, nameof(customer));
-                Ensure.IsNullOrWhiteSpace(customer.Email, nameof(customer.Email));
-                Ensure.IsNullOrWhiteSpace(customer.Id, nameof(customer.Id));
+                Ensure.IsNullOrWhiteSpace(email, nameof(email));
 
-                var result = await _customerHandler.GetOrderDetail(customer);
-                               
+                var result = _customerHandler.GetUserDetails(email);
+
+                if (result == null)
+                {
+                    return NotFound();
+                }
+
                 return Ok(result);
             }
             catch (Exception ex)
@@ -38,18 +39,26 @@ namespace MMT.WebApi.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<ActionResult<Customer>> GetUserDetails(string email)
+        [HttpPost]
+        public  ActionResult<CustomerOrder> GetOrderDetails([FromBody]CustomerBase customer)
         {
             try
             {
-                Ensure.IsNullOrWhiteSpace(email, nameof(email));
+                Ensure.IsNotNull(customer, nameof(customer));
+                Ensure.IsNullOrWhiteSpace(customer.User, nameof(customer.User));
+                Ensure.IsNullOrWhiteSpace(customer.CustomerId, nameof(customer.CustomerId));
 
-                var result = await _customerHandler.GetUserDetails(email);
+                var result = _customerHandler.GetOrderDetail(customer);
+
                 if (result == null)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
+                if (result.Order == null)
+                {
+                    return GetUserDetails(customer.User);
+                }
+
                 return Ok(result);
             }
             catch (Exception ex)

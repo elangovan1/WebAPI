@@ -1,0 +1,17 @@
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.DataEFCore.deps.json
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.DataEFCore.runtimeconfig.json
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.DataEFCore.runtimeconfig.dev.json
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.DataEFCore.dll
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.DataEFCore.pdb
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.Domain.dll
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.Utility.dll
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.Domain.pdb
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\bin\Debug\netcoreapp3.1\MMT.Utility.pdb
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.csprojAssemblyReference.cache
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.AssemblyInfoInputs.cache
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.AssemblyInfo.cs
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.csproj.CoreCompileInputs.cache
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.csproj.CopyComplete
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.dll
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.pdb
+G:\Test Code\MMT\MMT.API\MMT.WebApi\MMT.DataEFCore\obj\Debug\netcoreapp3.1\MMT.DataEFCore.genruntimeconfig.cache

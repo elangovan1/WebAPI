@@ -12,8 +12,8 @@ namespace MMT.WebApi
         public static IServiceCollection ConfigureRepositories(this IServiceCollection services)
         {
             services.AddScoped<IDbContext, DatabaseContext>()
-                    .AddScoped<ICustomerModelHandler, CustomerRepository>()
-                    .AddScoped<ICustomerEntityHandler, CustomerHandler>();
+                    .AddScoped<ICustomerRepositoryModel, CustomerRepositoryModel>()
+                    .AddScoped<ICustomerEntityHandler, CustomerEntityHandler>();
 
 
             return services;

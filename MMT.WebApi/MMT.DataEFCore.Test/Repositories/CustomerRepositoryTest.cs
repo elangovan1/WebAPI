@@ -1,5 +1,4 @@
 ﻿using MMT.DataEFCore.Repositories;
-using MMT.Domain.Entity;
 using MMT.Domain.Model;
 using NUnit.Framework;
 using System;
@@ -21,21 +20,21 @@ namespace MMT.DataEFCore.Test.Repositories
             dbContext.Customers.Add(customer);
             dbContext.SaveChanges();
 
-            var repo = new CustomerRepository(dbContext);
+            var repo = new CustomerRepositoryModel(dbContext);
             var result = repo.GetUserDetails("bob@mmtdigital.co.uk");
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.Result.Email, "bob@mmtdigital.co.uk");
-            Assert.AreEqual(result.Result.Id, "R223232");
-            Assert.AreEqual(result.Result.WebSite, true);
-            Assert.AreEqual(result.Result.FirstName, "Bob");
-            Assert.AreEqual(result.Result.LastName, "Testperson");
-            Assert.AreEqual(result.Result.LastLoggedIn.Date, customer.LastLoggedIn.Date);
-            Assert.AreEqual(result.Result.HouseNumber, "1a");
-            Assert.AreEqual(result.Result.Street, "Uppingham Gate");
-            Assert.AreEqual(result.Result.Town, "Uppingham");
-            Assert.AreEqual(result.Result.PostCode, "LE15 9NY");
-            Assert.AreEqual(result.Result.PreferredLanuage, "en-gb");
+            Assert.AreEqual(result.Email, "bob@mmtdigital.co.uk");
+            Assert.AreEqual(result.Id, "R223232");
+            Assert.AreEqual(result.WebSite, true);
+            Assert.AreEqual(result.FirstName, "Bob");
+            Assert.AreEqual(result.LastName, "Testperson");
+            Assert.AreEqual(result.LastLoggedIn.Date, customer.LastLoggedIn.Date);
+            Assert.AreEqual(result.HouseNumber, "1a");
+            Assert.AreEqual(result.Street, "Uppingham Gate");
+            Assert.AreEqual(result.Town, "Uppingham");
+            Assert.AreEqual(result.PostCode, "LE15 9NY");
+            Assert.AreEqual(result.PreferredLanuage, "en-gb");
         }
 
         [Test]
@@ -86,16 +85,90 @@ namespace MMT.DataEFCore.Test.Repositories
             dbContext.OrderItems.Add(orderItem2);
             dbContext.SaveChanges();
 
-            var repo = new CustomerRepository(dbContext);
+            var repo = new CustomerRepositoryModel(dbContext);
             var result = repo.GetOrderDetail(new CustomerModel { Email = "bob@mmtdigital.co.uk", Id = "R223232" });
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.Result.FirstName, "Bob");
-            Assert.AreEqual(result.Result.LastName, "Testperson");
-            Assert.IsInstanceOf(typeof(OrderModel), result.Result.Order);
-            Assert.IsNotNull(result.Result.Order);
-            Assert.IsInstanceOf(typeof(List<OrderItemModel>), result.Result.OrderItems);
-            Assert.IsNotNull(result.Result.OrderItems);
+            Assert.AreEqual(result.FirstName, "Bob");
+            Assert.AreEqual(result.LastName, "Testperson");
+            Assert.IsInstanceOf(typeof(OrderModel), result.Order);
+            Assert.IsNotNull(result.Order);
+            Assert.IsInstanceOf(typeof(List<OrderItemModel>), result.OrderItems);
+            Assert.IsNotNull(result.OrderItems);
+        }
+
+        [Test]
+        public async Task WhenGetOrderDetailIsCalledAnd_DBhasEmptyOrder_ThenShoudReturnNullOrderDetails()
+        {
+            var customer = new CustomerModel { Email = "bob@mmtdigital.co.uk", Id = "R223232", WebSite = true, FirstName = "Bob", LastName = "Testperson", LastLoggedIn = DateTime.Now, HouseNumber = "1a", Street = "Uppingham Gate", Town = "Uppingham", PostCode = "LE15 9NY", PreferredLanuage = "en-gb" };
+
+            var product1 = new ProductModel
+            {
+                Id = 1,
+                Name = "Tennis Ball"
+            };
+
+            var product2 = new ProductModel
+            {
+                Id = 2,
+                Name = "Tennis Net"
+            };
+
+            var order = new OrderModel();
+            var orderItem1 = new OrderItemModel();
+            var orderItem2 = new OrderItemModel();
+            
+            dbContext.Customers.Add(customer);
+            dbContext.Products.Add(product1);
+            dbContext.Products.Add(product2);
+            dbContext.Orders.Add(order);
+            dbContext.OrderItems.Add(orderItem1);
+            dbContext.OrderItems.Add(orderItem2);
+            dbContext.SaveChanges();
+
+            var repo = new CustomerRepositoryModel(dbContext);
+            var result = repo.GetOrderDetail(new CustomerModel { Email = "bob@mmtdigital.co.uk", Id = "R223232" });
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.FirstName, "Bob");
+            Assert.AreEqual(result.LastName, "Testperson");            
+            Assert.AreEqual(result.Order, null);            
+            Assert.IsFalse(result.OrderItems.Any());
+        }
+
+        [Test]
+        public async Task WhenGetOrderDetailIsCalledWithInvalidCustomerId_ThenShoudReturnNullOrderDetails()
+        {
+            var customer = new CustomerModel { Email = "bob@mmtdigital.co.uk", Id = "R223232", WebSite = true, FirstName = "Bob", LastName = "Testperson", LastLoggedIn = DateTime.Now, HouseNumber = "1a", Street = "Uppingham Gate", Town = "Uppingham", PostCode = "LE15 9NY", PreferredLanuage = "en-gb" };
+
+            var product1 = new ProductModel
+            {
+                Id = 1,
+                Name = "Tennis Ball"
+            };
+
+            var product2 = new ProductModel
+            {
+                Id = 2,
+                Name = "Tennis Net"
+            };
+
+            var order = new OrderModel();
+            var orderItem1 = new OrderItemModel();
+            var orderItem2 = new OrderItemModel();
+
+            dbContext.Customers.Add(customer);
+            dbContext.Products.Add(product1);
+            dbContext.Products.Add(product2);
+            dbContext.Orders.Add(order);
+            dbContext.OrderItems.Add(orderItem1);
+            dbContext.OrderItems.Add(orderItem2);
+            dbContext.SaveChanges();
+
+            var repo =  new CustomerRepositoryModel(dbContext);
+            var result = repo.GetOrderDetail(new CustomerModel { Email = "fake@mmtdigital.co.uk",  Id = "R223232" });
+
+            Assert.IsNull(result);            
         }
     }
 }

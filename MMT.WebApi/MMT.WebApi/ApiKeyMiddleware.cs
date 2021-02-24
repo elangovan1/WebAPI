@@ -8,7 +8,7 @@ namespace MMT.WebApi
     public class ApiKeyMiddleware
     {
         private readonly RequestDelegate _next;
-        private const string APIKEYNAME = "uu2ToG/dcsg3DI8CGlpLro1PyLhZNUWHpdPv8VmWFLBaxM0fvUZvkA==";
+        private const string APIKEYNAME = "ApiKey";
         public ApiKeyMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -24,7 +24,7 @@ namespace MMT.WebApi
 
             var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();
 
-            var apiKey = appSettings.GetValue<string>(APIKEYNAME);
+            var apiKey = appSettings.GetValue<string>("APIKey:Key");
 
             if (!apiKey.Equals(extractedApiKey))
             {

@@ -1,6 +1,6 @@
 ﻿namespace MMT.Domain.Entity
 {
-    public class Address
+    public class Address : CustomerBase
     {
         public string HouseNumber { get; set; }
         public string Street { get; set; }
